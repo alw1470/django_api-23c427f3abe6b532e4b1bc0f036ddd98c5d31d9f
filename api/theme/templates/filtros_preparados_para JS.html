@@ -1,0 +1,112 @@
+{% extends 'base.html'%}
+{%block content%}
+<div class="max-w-6xl mx-auto flex flex-wrap items-start py-6 px-6 xl:px-0">
+  <div class="filters w-full lg:w-1/4">
+      <h3 class="mb-3 text-xl uppercase">Filtros</h3>
+      <form method="GET" action="{% url 'buscador_dos' %}">
+        <div x-data={show:false} class="rounded-sm">
+          <div class="rounded-xl md:rounded-lg px-6 h-2 shadow-900">
+              <button @click="show=!show" class="underline text-blue-500 hover:text-blue-700 focus:outline-none" type="button">
+              Duracion
+              </button>
+          </div>
+          <div x-show="show" class="px-10 py-2">
+            <div x-data="{duracion:['']}" class="flex items-center">
+              <ul>
+                <li><input id="filter-mobile-color-1" name="duracion" value="20" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-color-1" class="ml-3 min-w-0 flex-1 text-gray-500"> 20 Minutos </label>
+                </li>
+                <li><input id="filter-mobile-color-1" name="duracion" value="25" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label for="filter-mobile-color-1" class="ml-3 min-w-0 flex-1 text-gray-500"> 25 Minutos </label>
+                </li>
+                <li>
+                  <input  name="duracion" value="30" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label class="ml-3 min-w-0 flex-1 text-gray-500"> 30 Minutos </label>
+                </li>
+                <li><input name="duracion" value="45" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label class="ml-3 min-w-0 flex-1 text-gray-500"> 45 Minutos </label>
+                </li>
+                <li><input name="duracion" value="60" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label class="ml-3 min-w-0 flex-1 text-gray-500"> 60 Minutos </label>
+                </li>
+                <li>
+                  <input name="duracion" value="120" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label class="ml-3 min-w-0 flex-1 text-gray-500"> 120 Minutos </label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div x-data={show:false} class="rounded-sm">
+          <div class="rounded-xl md:rounded-lg px-6 h-2 shadow-900">
+              <button @click="show=!show" class="underline text-blue-500 hover:text-blue-700 focus:outline-none" type="button">
+                Publicacion
+              </button>
+          </div>
+          <div x-show="show" class="px-10 py-2">
+            <div x-data="{publicacion:['']}" class="flex items-center">
+              <ul>
+                <li>
+                  <input name="publicacion" value="<p>2020</p>" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label class="ml-3 min-w-0 flex-1 text-gray-500">2020</label>
+                </li>
+                <li>
+                  <input  name="publicacion" value="<p>2019</p>" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label class="ml-3 min-w-0 flex-1 text-gray-500">2019</label>
+                </li>
+                <li>
+                  <input name="publicacion" value="<p>2018</p>" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label class="ml-3 min-w-0 flex-1 text-gray-500">2018</label>
+                </li>
+                <li>
+                  <input name="publicacion" value="<p>2018</p>" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label class="ml-3 min-w-0 flex-1 text-gray-500">2018</label>
+                </li>
+                <li>
+                  <input name="publicacion" value="<p>2017</p>" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label class="ml-3 min-w-0 flex-1 text-gray-500">2017</label>
+                </li>
+                <li>
+                  <input name="publicacion" value="<p>2016</p>" type="checkbox" class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                  <label class="ml-3 min-w-0 flex-1 text-gray-500">2016</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <button class="bg-slate-600 h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">Buscar</button>
+      </form>
+  </div>
+  <div class="products w-full lg:w-3/4 -mt-4 flex items-center flex-wrap">
+    <div class="bg-white">
+      <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+        <div class="mt-6 grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 xl:gap-x-8">
+        {% for producto in queryset %}
+          <div class="group relative">
+            {% if producto.imagen_url %}
+            <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+              <a href="{% url 'categorias' producto.categorias.slug %}{{producto.slug}}/"><img src="{{producto.imagen_url}}" alt="" class="w-full h-full object-center object-cover lg:w-full lg:h-full"></a>
+            </div>
+            <div class="mt-4 flex justify-between">
+              <div>
+                <a href="{% url 'categorias' producto.categorias.slug %}{{producto.slug}}/"><h3 class="text-sm text-gray-700">
+                    <span aria-hidden="true" class="absolute inset-0"></span>
+                    {{producto.titulo_juegos_de_mesa}}
+                </h3></a>
+              </div>
+              <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{{producto.precio_bajo|floatformat:2}} €</p>
+            </div>
+          </div>
+            {% else %}
+            <div>
+              <a href="{% url 'categorias' producto.categorias.slug %}{{producto.slug}}/"><h3 class="text-sm text-gray-700">
+                  <span aria-hidden="true" class="absolute inset-0"></span>
+                  {{producto.titulo_juegos_de_mesa}}
+              </h3></a>
+            </div>
+            {% endif %}
+        {% endfor %}
+  </div>
+</div>
+{%endblock content %}

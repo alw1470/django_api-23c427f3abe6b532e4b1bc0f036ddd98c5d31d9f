@@ -1,0 +1,34 @@
+{% extends 'base.html'%}
+{%block content%}
+<header class="py-36 lg:py-36 bg-cover bg-center" style="background-image: url(/media/header.jpg);">
+    <div class="max-w-3xl mx-auto text-center">
+        <p class="mb-2 py-3 text-3xl lg:text-5xl text-white">Ecuentra tu juego de mesa</p>
+        <form action="{% url 'buscador' %}" method="get">
+            <div class="rounded-xl md:rounded-lg px-8 h-14 shadow-900"><label for="buscador"
+                    class="sr-only">Buscar...</label><input type="search" type="text" autocomplete="on"
+                    class="w-full h-full flex item-center text-center appearance-none transition duration-300 ease-in-out text-heading text-sm placeholder-gray-500 overflow-hidden rounded-lg focus:outline-none focus:ring-0 bg-light ps-6 pe-14 rounded-te-none rounded-be-none  border border-e-0 border-transparent focus:border-accent"
+                    name="titulo_juegos_de_mesa" placeholder="" value="">
+            </div>
+            <div class="inline-block py-3 rounded md:rounded-lg px-8 h-14 shadow-900">
+                <button class="inline-block px-20 py-2 rounded-xl bg-white text-grey-500 hover:bg-gray-200">Buscar..</button>
+            </div>
+        
+        </form>
+    </div>
+</header>
+
+<div class="max-w-2xl mx-auto py-10 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+    <center><h2 style="font-size: 30px;font-weight: 500;">Juegos destacados</h2></center>
+    <br>
+    <div class="max-w-6xl mx-auto mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        {% for producto in productos %}
+            {% include 'lista_productos.html'%}
+        {% endfor %}
+    </div>
+</div>
+
+{% include 'seo.html'%}
+
+{% endblock %}
+
+

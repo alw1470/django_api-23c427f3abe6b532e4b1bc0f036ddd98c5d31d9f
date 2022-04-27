@@ -1,0 +1,80 @@
+{% extends 'base.html'%}
+{%block content%}
+{% load widget_tweaks %}
+<div class="max-w-6xl mx-auto flex flex-wrap items-start py-6 px-6 xl:px-0">
+  <div class="filters w-full lg:w-1/4" style="margin-bottom: 21px;">
+    <form 
+    hx-get = "{% url 'resultado' %}"
+    hx-target ="#search-results"
+    hx-swap="outerHTML"
+    hx-trigger="submit, input delay:0.3s"
+    >
+        <div class="rounded-xl md:rounded-lg px-8 h-14 shadow-900">
+            <input input type="search" type="text" autocomplete="on" class="p-4 bg-gray-100 border-0 text-center rounded-full"  name="titulo_juegos_de_mesa" placeholder="Buscar">
+        </div>
+    </form>
+    <h3 class="mb-3 text-xl uppercase">Duracion</h3>
+    {% render_field form.duracion autocomplete="off" %}
+    <br>
+    <h3 class="mb-3 text-xl uppercase">Autores</h3>
+    {% render_field form.autores autocomplete="off"%}
+    <div x-data={show:true} class="rounded-sm hidden lg:block">
+      <button @click="show=!show" type="button" class="mt-6 mb-3 text-xl uppercase hidden lg:block">Categorias</button>
+      <div x-show="show" class="px-10 py-2 hidden lg:block">    
+        <ul class="space-y-2" style="margin-bottom: 10px;">
+            {% for categoria in categorias %}
+                <li>
+                  <a href="{{categoria.slug }}/">
+                  {{categoria.titulo_categoria}}
+                  </a>
+                </li>
+            {% endfor %}
+        </ul>
+      </div>
+    </div>
+</div>
+
+<div class="products w-full lg:w-3/4 -mt-4 flex items-center flex-wrap">
+  <div class="bg-white">
+    <div class="max-w-2xl mx-auto py-13 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+      <div class="mt-6 grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 xl:gap-x-8">
+      {% include 'resultado_view.html'%}
+</div>
+
+
+
+<script>
+
+  function DuracionChoiceForm(el, duracion) {
+      const tiempo = el.value
+      console.log(duracion, tiempo)
+      // if (genres.indexOf(genre) != -1) {
+      if (duracion.includes(tiempo)) {
+          return duracion.filter(g => g != tiempo)
+      } else {
+          return [...duracion, tiempo]
+      }
+  }
+  
+</script>
+
+
+<script>
+
+  function AutoresChoiceForm(el, autores) {
+      const nombre_autor = el.value
+      console.log(autores, nombre_autor)
+      // if (genres.indexOf(genre) != -1) {
+      if (autores.includes(nombre_autor)) {
+          return autores.filter(h => h != nombre_autor)
+      } else {
+          return [...autores, nombre_autor]
+      }
+  }
+  
+</script>
+
+
+
+
+{%endblock content %}

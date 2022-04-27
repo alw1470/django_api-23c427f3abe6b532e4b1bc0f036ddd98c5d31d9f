@@ -1,0 +1,16 @@
+<div class="group relative">
+    <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+      <a href="{% url 'categorias' producto.categorias.slug %}{{producto.slug}}/"><img src="{{producto.imagen_url}}" alt="" class="w-full h-full object-center object-cover lg:w-full lg:h-full"></a>
+    </div>
+    <div class="mt-4 flex justify-between">
+      <div>
+        <a href="{% url 'categorias' producto.categorias.slug %}{{producto.slug}}/"><h3 class="text-sm text-gray-700">
+            <span aria-hidden="true" class="absolute inset-0"></span>
+            {{producto.titulo_juegos_de_mesa}}
+        </h3></a>
+      </div>
+      <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{{producto.precio_bajo|floatformat:2}} €</p>
+    </div>
+</div>
+
+

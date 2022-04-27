@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+{%block content%}
+<header class="py-36 lg:py-36 bg-cover bg-center" style="background-image: url({{articulos.imagen_blog}});">
+    <div class="max-w-3xl mx-auto text-center">
+        <h1 class="mb-2 py-3 text-3xl lg:text-5xl text-white">{{articulos.titulo}}</h1>
+    </div>
+</header>
+
+<div class="max-w-2xl mx-auto py-10 px-4 grid items-center grid-cols-1 gap-y-16 gap-x-8 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8 lg:grid-cols-1">
+    {{articulos.cuerpo_articulo|safe}}
+
+{% endblock %}
+
+

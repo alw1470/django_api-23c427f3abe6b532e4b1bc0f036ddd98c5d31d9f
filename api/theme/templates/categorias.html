@@ -1,0 +1,38 @@
+{% extends 'base.html'%}
+{%block content%}
+  <body>
+    <div class="bg-white">
+      <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+        <h1 class="text-2xl font-extrabold tracking-tight text-gray-900">{{ficha.titulo_categoria}}</h1>
+        <br>
+        <p>{{ficha.body|safe}}</p>
+        
+        <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        {% for producto in productos %}
+          <div class="group relative">
+            {% if producto.imagen_url %}
+            <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+              <a href="{{producto.slug}}/"><img src="{{producto.imagen_url}}" alt="" class="w-full h-full object-center object-cover lg:w-full lg:h-full"></a>
+            </div>
+            <div class="mt-4 flex justify-between">
+              <div>
+                <a href="{{producto.slug}}/"><h3 class="text-sm text-gray-700">
+                    <span aria-hidden="true" class="absolute inset-0"></span>
+                    {{producto.titulo_juegos_de_mesa}}
+                </h3></a>
+              </div>
+              <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{{producto.precio_bajo|floatformat:2}} €</p>
+            </div>
+          </div>
+            {% else %}
+            <div>
+              <a href="{{producto.slug}}/"><h3 class="text-sm text-gray-700">
+                  <span aria-hidden="true" class="absolute inset-0"></span>
+                  {{producto.titulo_juegos_de_mesa}}
+              </h3></a>
+            </div>
+            {% endif %}
+        {% endfor %}
+  </body>
+</html>
+{%endblock content %}

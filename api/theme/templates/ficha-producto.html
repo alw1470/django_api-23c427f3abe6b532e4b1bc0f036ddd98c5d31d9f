@@ -1,0 +1,93 @@
+{% extends 'base.html'%}
+{% block content %}
+<body>
+    <div class="bg-white">
+        <div class="pt-6">
+          <nav aria-label="Breadcrumb">
+            <ol role="list" class="max-w-2xl mx-auto px-4 flex items-center space-x-2 sm:px-6 lg:max-w-7xl lg:px-8">
+              <li>
+                <div class="flex items-center">
+                  <a href="{% url 'categorias' ficha.slug %}" class="mr-2 text-sm font-medium text-gray-900">
+                    {{ficha.titulo_categoria}}
+                  </a>
+                  <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-4 h-5 text-gray-300">
+                    <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
+                  </svg>
+                </div>
+              </li>  
+              <li class="text-sm">
+                <a href="#" aria-current="page" class="font-medium text-gray-500 hover:text-gray-600">
+                  {{producto.titulo_juegos_de_mesa}}
+                </a>
+              </li>
+            </ol>
+          </nav>      
+          <!-- Image gallery -->
+          <div class="max-w-6xl mx-auto flex flex-wrap py-6 px-6 xl:px-0">
+            <div class="images w-5/6 mx-auto lg:w-3/5 md:aspect-w-16 md:aspect-h-9 sm:aspect-w-16 sm:aspect-h-9 lg:aspect-w-16 lg:aspect-h-9">
+              <img class="object-contain" src="{{producto.imagen_url}}" alt="Two each of gray, white, and black shirts laying flat." class="w-full h-full object-center object-cover sm:aspect-none">
+            </div>
+        
+            <div class="information w-full lg:w-2/5 lg:p-6">
+                <h1 class="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl text-center lg:text-left pt-6 lg:pt-0">{{producto.titulo_juegos_de_mesa}}</h1>
+                <p class="sm:text-1xl text-center lg:text-left pt-6 lg:pt-0"> Duracion media: {{producto.duracion}}</p>
+                <p class="sm:text-1xl text-center lg:text-left pt-6 lg:pt-0"> Autor: {{producto.autores}}</p>
+                <p class="sm:text-1xl text-center lg:text-left pt-6 lg:pt-0"> Año publicación: {{producto.publicacion|safe}}</p>
+                <div class="mt-4 lg:mt-0 lg:row-span-3">
+                  <br>
+                  <div class="flex flex-col">
+                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                      <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                          <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                              <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                  Tienda
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                  Precio
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                  Stock
+                                </th>
+                              </tr>
+                            </thead>
+                            {% for oferta in ofertas %}
+                            <tbody class="bg-white divide-y divide-gray-200">
+                              <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                  <div class="flex items-center">
+                                    <div class="ml-4">
+                                      <div class="text-sm font-medium text-gray-900">
+                                        <a href="{{oferta.enlaces_tiendas}}?utm_campaign=al_games">{{oferta.tienda}}</a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                  <div class="text-sm text-gray-900">{{oferta.precio|floatformat:2}} €</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                    Stock
+                                  </span>
+                                </td>
+                              </tr>
+                  
+                              <!-- More people... -->
+                            </tbody>
+                            {% endfor %}
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <div>
+          <p class="mt-6 text-gray-700">{{producto.body|safe}}</p>
+        </div>
+</body>
+</html>
+{% endblock content %}

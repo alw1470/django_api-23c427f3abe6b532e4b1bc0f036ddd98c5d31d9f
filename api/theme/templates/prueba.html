@@ -1,0 +1,113 @@
+{% extends 'base.html'%}
+{% load widget_tweaks %}
+
+{%block content%}
+
+
+<div class="max-w-6xl mx-auto flex flex-wrap items-start py-6 px-6 xl:px-0">
+    <div class="filters w-full lg:w-1/4">
+        <h3 class="mb-3 text-xl uppercase">Buscador</h3>
+        <form hx-get="{% url 'resultado' %}" hx-target="#search-results" hx-swap="outerHTML"
+            hx-trigger="submit, input delay:0.3s">
+            <div class="flex">
+                <input input type="search" type="text" autocomplete="on" class="p-4 bg-gray-100 border-0"
+                    name="titulo_juegos_de_mesa" placeholder="Buscar">
+            </div>
+        </form>
+        <br>
+        <form hx-get="{% url 'resultado' %}" hx-target="#search-results" hx-swap="outerHTML"
+            hx-trigger="submit, input delay:0.3s">
+            <div x-data="{ open: true }">
+                <button x-on:click="open = ! open" class="mb-3 text-xl uppercase">Duracion</button>
+                <div class="px-10 py-2">
+                    <div x-show="open" class="flex items-center">
+                        <ul>
+                            <li><input id="filter-mobile-color-1" name="duracion" value="20" type="checkbox"
+                                    class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                <label for="filter-mobile-color-1" class="ml-3 min-w-0 flex-1 text-gray-500"> 20 Minutos
+                                </label>
+                            </li>
+                            <li><input id="filter-mobile-color-1" name="duracion" value="25" type="checkbox"
+                                    class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                <label for="filter-mobile-color-1" class="ml-3 min-w-0 flex-1 text-gray-500"> 25 Minutos
+                                </label>
+                            </li>
+                            <li>
+                                <input name="duracion" value="30" type="checkbox"
+                                    class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                <label class="ml-3 min-w-0 flex-1 text-gray-500"> 30 Minutos </label>
+                            </li>
+                            <li><input name="duracion" value="45" type="checkbox"
+                                    class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                <label class="ml-3 min-w-0 flex-1 text-gray-500"> 45 Minutos </label>
+                            </li>
+                            <li><input name="duracion" value="60" type="checkbox"
+                                    class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                <label class="ml-3 min-w-0 flex-1 text-gray-500"> 60 Minutos </label>
+                            </li>
+                            <li>
+                                <input name="duracion" value="120" type="checkbox"
+                                    class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                <label class="ml-3 min-w-0 flex-1 text-gray-500"> 120 Minutos </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div x-data="{ open: true }">
+                <button x-on:click="open = ! open" class="mb-3 text-xl uppercase">Publicacion</button>
+                <div class="px-10 py-2">
+                    <div x-show="open" class="flex items-center">
+                        <ul>
+                            <li>
+                                <input name="publicacion" value="<p>2021</p>" type="checkbox"
+                                    class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                <label class="ml-3 min-w-0 flex-1 text-gray-500">2021</label>
+                            </li>
+                            <li>
+                                <input name="publicacion" value="<p>2020</p>" type="checkbox"
+                                    class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                <label class="ml-3 min-w-0 flex-1 text-gray-500">2020</label>
+                            </li>
+                            <li>
+                                <input name="publicacion" value="<p>2019</p>" type="checkbox"
+                                    class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                <label class="ml-3 min-w-0 flex-1 text-gray-500">2019</label>
+                            </li>
+                            <li>
+                                <input name="publicacion" value="<p>2018</p>" type="checkbox"
+                                    class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                <label class="ml-3 min-w-0 flex-1 text-gray-500">2018</label>
+                            </li>
+                            <li>
+                                <input name="publicacion" value="<p>2018</p>" type="checkbox"
+                                    class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                <label class="ml-3 min-w-0 flex-1 text-gray-500">2018</label>
+                            </li>
+                            <li>
+                                <input name="publicacion" value="<p>2017</p>" type="checkbox"
+                                    class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                <label class="ml-3 min-w-0 flex-1 text-gray-500">2017</label>
+                            </li>
+                            <li>
+                                <input name="publicacion" value="<p>2016</p>" type="checkbox"
+                                    class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                <label class="ml-3 min-w-0 flex-1 text-gray-500">2016</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="products w-full lg:w-3/4 -mt-4 flex items-center flex-wrap">
+        <div class="bg-white">
+            <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+                <div class="mt-6 grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 xl:gap-x-8">
+                    {% include 'resultado_view.html'%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
