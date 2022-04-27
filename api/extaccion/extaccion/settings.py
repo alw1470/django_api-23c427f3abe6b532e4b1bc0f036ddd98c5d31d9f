@@ -11,7 +11,7 @@
 #PARA USAR DJANGO_ITEMS
 # Setting up django's project full path.
 import sys
-sys.path.insert(0, 'C:/Users/Alberto/Desktop/Workspace/django_api/api')
+sys.path.insert(0, 'C:/Users/Alberto/Desktop/django_api-23c427f3abe6b532e4b1bc0f036ddd98c5d31d9f/api')
 
 # Setting up django's settings module name.
 import os
@@ -24,7 +24,8 @@ BOT_NAME = 'extaccion'
 
 SPIDER_MODULES = ['extaccion.spiders']
 NEWSPIDER_MODULE = 'extaccion.spiders'
-IMAGES_STORE = 'C:/Users/Alberto/Desktop/Workspace/django_api/api/al_games/templates/media/media'
+IMAGES_STORE = 'C:/Users/Alberto/Desktop/django_api-23c427f3abe6b532e4b1bc0f036ddd98c5d31d9f/api/al_games/templates/media/media'
+
 
 ## La ruta de las imagines se debe cambiar al subir a producción
 

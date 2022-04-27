@@ -16,7 +16,7 @@ from al_games.models import Juegos_de_mesa, Ofertas_juegos_de_mesa, Categorias
 import time
 
 conexion = sqlite3.connect(
-    'C:/Users/Alberto/Desktop/Workspace/django_api/api/db.sqlite3')
+    'C:/Users/Alberto/Desktop/django_api-23c427f3abe6b532e4b1bc0f036ddd98c5d31d9f/api/db.sqlite3')
 cursor = conexion.cursor()
 cursor.execute("SELECT titulo_juegos_de_mesa, id FROM al_games_juegos_de_mesa")
 todo = cursor.fetchall()
@@ -26,12 +26,12 @@ class MesaSpider(scrapy.Spider):
     name = 'mesa'
     allowed_domains = ['www.ludonauta.es']
     start_urls = [
-        'https://www.ludonauta.es/juegos-mesas-tiendas/listar-por-tienda/espacio-de-juegos']
+        'https://www.ludonauta.es/juegos-mesas-tiendas/listar-por-tienda/cartoon-corp']
     BASE_URL = 'https://www.ludonauta.es'
 
     def parse(self, response):
         for l in range(1, 128):
-            url = f"https://www.ludonauta.es/juegos-mesas-tiendas/listar-por-tienda/espacio-de-juegos/page:{l}"
+            url = f"https://www.ludonauta.es/juegos-mesas-tiendas/listar-por-tienda/cartoon-corp/page:{l}"
             comprobacion = requests.get(url)
             print(url)
             link_page_url = response.urljoin(url)
@@ -93,7 +93,7 @@ class MesaSpider(scrapy.Spider):
                     item['juego_de_mesa'] = Juegos_de_mesa.objects.get(
                         id=valor)
                     item['precio'] = value
-                    item['tienda'] = 'Espacio Juegos'
+                    item['tienda'] = 'Cartoon Corp'
                 for key, value in dicionario_enlaces.items():
                     if titulo_prueba == key:
                         item['enlaces_tiendas'] = value
